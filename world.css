@@ -1,0 +1,287 @@
+/* =============================================
+   SKICAST — world.css
+   Styles for the World page
+   ============================================= */
+
+/* ── World Weather Grid ── */
+.world-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.world-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--cloud-gray);
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+}
+
+.world-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--theme-accent);
+}
+
+.world-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--theme-accent), var(--theme-card-from));
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.world-card:hover::before {
+  opacity: 1;
+}
+
+.ww-city {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  letter-spacing: -0.5px;
+  margin-bottom: 0.3rem;
+  line-height: 1.1;
+}
+
+.ww-country {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 1.75rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.ww-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.ww-temp {
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--sky-deep);
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.ww-icon img {
+  width: 75px;
+  height: 75px;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
+}
+
+.ww-desc {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  text-transform: capitalize;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+
+.ww-stats {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+  border-top: 1.5px solid var(--cloud-gray);
+  padding-top: 1.25rem;
+}
+
+.ww-stat {
+  font-size: 0.8rem;
+  color: var(--text-mid);
+  background: var(--cloud-white);
+  border-radius: 10px;
+  padding: .4rem .9rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 700;
+  transition: var(--transition);
+}
+
+.ww-stat:hover {
+  background: var(--cloud-gray);
+}
+
+.ww-stat i {
+  color: var(--sky-blue);
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* ── World Filters ── */
+.world-filter {
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+  background: #ffffff;
+  padding: 1.25rem 2rem;
+  border-radius: 60px;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--cloud-gray);
+}
+
+.filter-label {
+  font-size: 1rem;
+  color: var(--text-mid);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+.filter-pills {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.pill {
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: .5rem 1.4rem;
+  border-radius: 60px;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  color: var(--text-mid);
+  background: var(--cloud-white);
+  transition: var(--transition);
+}
+
+.pill:hover {
+  background: var(--cloud-gray);
+  color: var(--text-dark);
+}
+
+.pill.active {
+  background: var(--theme-accent);
+  border-color: var(--theme-accent);
+  color: #fff;
+  box-shadow: 0 5px 15px var(--theme-highlight);
+}
+
+.world-hint {
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1rem;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  font-weight: 600;
+}
+
+.world-hint i {
+  color: var(--theme-accent);
+  font-size: 1.2rem;
+}
+
+/* ── Skeleton loader ── */
+.skeleton {
+  background: linear-gradient(90deg, var(--cloud-gray) 25%, var(--cloud-white) 50%, var(--cloud-gray) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  min-height: 220px;
+  border-radius: var(--radius-md);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ── Responsive World ── */
+@media (max-width: 1100px) {
+  .world-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .world-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .world-filter {
+    padding: 1.25rem 1.75rem;
+    border-radius: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .filter-pills {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .world-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .world-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .world-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .ww-temp {
+    font-size: 2.2rem;
+  }
+
+  .ww-icon img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .world-card {
+    padding: 1.75rem 1.5rem;
+    border-radius: var(--radius-md);
+  }
+
+  .ww-stats {
+    gap: 0.6rem;
+  }
+
+  .ww-stat {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}

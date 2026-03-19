@@ -1,0 +1,167 @@
+/* =============================================
+   SKICAST — forecast.css
+   Styles for the Forecast page
+   ============================================= */
+
+/* ── Date/Time Picker Card ── */
+.dt-picker-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--cloud-gray);
+  overflow: hidden;
+  margin-bottom: 3.5rem;
+  transition: var(--transition);
+}
+.dt-picker-body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+  padding: 3rem 4rem;
+}
+.dt-picker-info { display: flex; align-items: start; gap: 2rem; }
+.dt-big-icon {
+  font-size: 3.5rem;
+  color: var(--theme-accent);
+  transition: color 1.5s ease;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  filter: drop-shadow(0 4px 10px var(--theme-highlight));
+}
+.dt-picker-info h3 { font-size: 1.45rem; font-weight: 700; color: var(--text-dark); margin-bottom: .6rem; letter-spacing: -0.4px; }
+.dt-picker-info p { font-size: 1rem; color: var(--text-mid); margin-bottom: 0.75rem; line-height: 1.6; max-width: 480px; }
+.dt-note {
+  font-size: 0.85rem !important;
+  color: var(--text-mid) !important;
+  background: var(--cloud-gray);
+  border-radius: 12px;
+  padding: .5rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+.dt-controls { display: flex; flex-direction: column; gap: 1.25rem; min-width: 300px; }
+.dt-input-wrap label {
+  display: block; font-size: 0.85rem; font-weight: 700; color: var(--text-mid);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.6rem;
+}
+.dt-input-wrap label i { margin-right: .5rem; color: var(--theme-accent); }
+#dt-picker {
+  width: 100%; border: 2px solid var(--cloud-gray); border-radius: 18px;
+  padding: .85rem 1.25rem; font-family: var(--font); font-size: 1.05rem; color: var(--text-dark);
+  background: var(--cloud-white); transition: var(--transition); outline: none;
+  font-weight: 500;
+}
+#dt-picker:focus { border-color: var(--theme-accent); box-shadow: 0 0 0 6px var(--theme-highlight); background: #fff; }
+.dt-lookup-btn {
+  background: var(--theme-accent); color: #fff; border: none; border-radius: 18px;
+  padding: 1rem 1.75rem; font-size: 1.1rem; font-weight: 800; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: .75rem;
+  transition: var(--transition), background 1.5s ease;
+  box-shadow: 0 10px 20px var(--theme-highlight);
+}
+.dt-lookup-btn:hover { filter: brightness(1.1); transform: translateY(-4px); box-shadow: 0 15px 30px var(--theme-highlight); }
+
+/* ── Slot Weather Result Card ── */
+.slot-card {
+  background: linear-gradient(135deg, var(--theme-card-from) 0%, var(--theme-card-to) 100%);
+  border-radius: var(--radius-lg); padding: 3.5rem 4rem; color: #fff;
+  box-shadow: var(--shadow-lg); margin-top: 3rem; transition: background 1.5s ease;
+  animation: fadeSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative; overflow: hidden;
+}
+.slot-card::after {
+  content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px;
+  background: rgba(255,255,255,.07); border-radius: 50%; pointer-events: none;
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.slot-header {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+  gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,.2);
+}
+.slot-datetime { font-size: 1.15rem; font-weight: 700; color: rgba(255,255,255,1); display: flex; align-items: center; gap: .75rem; }
+.slot-location { font-size: 1rem; color: #fff; background: rgba(255,255,255,.25); border-radius: 12px; padding: .4rem 1.25rem; font-weight: 700; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.slot-body { display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: center; }
+.slot-main { display: flex; align-items: center; gap: 2rem; }
+.slot-temp { font-family: var(--font-heading); font-size: 6rem; font-weight: 800; line-height: 1; letter-spacing: -4px; }
+.slot-icon-wrap { text-align: center; }
+.slot-icon-wrap img { width: 110px; height: 110px; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.25)); }
+.slot-condition { font-size: 1.4rem; color: #ffffff; text-transform: capitalize; margin-top: 0.6rem; font-weight: 700; letter-spacing: 0.2px; }
+.slot-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.slot-stat {
+  display: flex; flex-direction: column; gap: 0.6rem; background: rgba(255,255,255,.14);
+  border-radius: 20px; padding: 1.25rem 1.5rem; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: var(--transition);
+}
+.slot-stat:hover { background: rgba(255,255,255,.22); transform: scale(1.03); }
+.slot-stat .stat-icon { font-size: 1.6rem; opacity: 1; margin-bottom: .25rem; }
+.slot-stat .stat-label { font-size: 0.75rem; color: rgba(255,255,255,.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+.slot-stat .stat-val { font-size: 1.15rem; font-weight: 800; color: #fff; }
+.slot-note {
+  margin-top: 2rem; font-size: 0.95rem; color: rgba(255,255,255,0.7);
+  display: flex; align-items: center; gap: .6rem; justify-content: center; font-weight: 500;
+}
+
+/* ── Weekly Forecast Grid ── */
+.weekly-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1.5rem; padding: 1rem 0; }
+.weekly-card {
+  background: var(--bg-card); border-radius: var(--radius-md); padding: 2rem 1.25rem;
+  text-align: center; box-shadow: var(--shadow-sm); border: 2px solid var(--cloud-gray);
+  transition: var(--transition); cursor: default;
+}
+.weekly-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-md); border-color: var(--theme-accent); }
+.wc-day { font-size: 0.9rem; font-weight: 800; color: var(--text-mid); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.25rem; }
+.wc-icon img { width: 65px; height: 65px; margin: 0 auto 0.75rem; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12)); }
+.wc-desc { font-size: 0.85rem; color: var(--text-light); text-transform: capitalize; margin: .75rem 0; min-height: 2.5em; line-height: 1.35; font-weight: 500; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.wc-temps { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; border-top: 1.5px solid var(--cloud-gray); padding-top: 1rem; }
+.wc-high { font-size: 1.1rem; font-weight: 800; color: var(--text-dark); }
+.wc-low { font-size: 1.1rem; font-weight: 400; color: var(--text-light); }
+
+/* ── Forecast Placeholder ── */
+.forecast-placeholder {
+  background: var(--cloud-white); border: 2.5px dashed var(--cloud-gray); border-radius: var(--radius-md);
+  padding: 5rem 3rem; text-align: center; color: var(--text-light); font-size: 1.15rem; font-weight: 600;
+}
+.forecast-placeholder i { color: var(--theme-accent); font-size: 2.2rem; margin-bottom: 1rem; display: block; opacity: 0.85; }
+
+/* ── Responsive Forecast ── */
+@media (max-width: 1200px) {
+  .weekly-grid { gap: 1rem; }
+  .dt-picker-body { padding: 3rem 2.5rem; gap: 3rem; }
+  .slot-card { padding: 3rem; }
+}
+@media (max-width: 1024px) {
+  .weekly-grid { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .slot-body { gap: 3rem; }
+}
+@media (max-width: 900px) {
+  .dt-picker-body { grid-template-columns: 1fr; gap: 3rem; text-align: center; padding: 3.5rem 2rem; }
+  .dt-picker-info { flex-direction: column; align-items: center; }
+  .dt-picker-info p { margin: 0 auto 1rem; }
+  .dt-controls { min-width: 100%; max-width: 440px; margin: 0 auto; }
+  .slot-body { grid-template-columns: 1fr; gap: 4rem; text-align: center; }
+  .slot-main { justify-content: center; }
+  .slot-header { justify-content: center; text-align: center; }
+  .slot-stats { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; max-width: 500px; margin: 0 auto; }
+  .dt-picker-card { margin-bottom: 3rem; }
+}
+@media (max-width: 600px) {
+  .weekly-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .slot-temp { font-size: 5rem; }
+}
+@media (max-width: 480px) {
+  .dt-picker-card { margin-bottom: 2.5rem; border-radius: var(--radius-md); }
+  .dt-picker-body { padding: 3rem 1.5rem; }
+  .slot-card { padding: 2.5rem 1.5rem; border-radius: var(--radius-md); }
+  .slot-stats { grid-template-columns: 1fr; gap: 1rem; width: 100%; }
+  .slot-temp { font-size: 4rem; }
+  .weekly-card { padding: 1.5rem 1rem; }
+  .slot-main { flex-direction: column; gap: 1rem; }
+  .slot-datetime { font-size: 1rem; }
+  .slot-location { margin-top: 0.5rem; }
+}

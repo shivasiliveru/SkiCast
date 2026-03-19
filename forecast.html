@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKICAST - 7-Day Forecast & Weather Lookup</title>
+  <meta name="description" content="Get the 7-day weather forecast for any city and look up weather for a specific date and time with SKICAST." />
+  <meta name="theme-color" content="#1a6fad" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Zen+Dots&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="forecast.css" />
+</head>
+<body data-page="forecast">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-cloud-sun"></i></span>
+        <span class="logo-text">SKICAST</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Today</a></li>
+        <li><a href="forecast.html" class="active">Forecast</a></li>
+        <li><a href="world.html">World</a></li>
+      </ul>
+      <div class="nav-search">
+        <div class="search-wrapper">
+          <span class="search-icon"><i class="fas fa-magnifying-glass"></i></span>
+          <input type="text" id="nav-search-input" placeholder="Search city..." autocomplete="off" />
+          <button class="search-btn" id="nav-search-btn">Go</button>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a href="index.html">Today</a></li>
+        <li><a href="forecast.html" class="active">Forecast</a></li>
+        <li><a href="world.html">World</a></li>
+      </ul>
+      <div class="mobile-search">
+        <input type="text" id="mobile-search-input" placeholder="Search city..." autocomplete="off" />
+        <button id="mobile-search-btn">Go</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <div class="page-header">
+    <div class="container">
+      <div class="ph-top">
+        <div class="ph-breadcrumb">
+          <a href="index.html"><i class="fas fa-house"></i> Home</a>
+          <i class="fas fa-chevron-right"></i>
+          <span>Forecast</span>
+        </div>
+        <div class="ph-city-search">
+          <div class="search-wrapper">
+            <span class="search-icon"><i class="fas fa-magnifying-glass"></i></span>
+            <input type="text" id="forecast-search-input" placeholder="Enter a city..." autocomplete="off" />
+            <button class="search-btn" id="forecast-search-btn">Search</button>
+          </div>
+        </div>
+      </div>
+      <h1 class="ph-title"><i class="fas fa-calendar-days"></i> Forecast</h1>
+      <p class="ph-subtitle" id="forecast-city-label">Search a city to see its forecast</p>
+    </div>
+  </div>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+    <div class="toast" id="toast"></div>
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="loader"></div>
+      <p>Loading forecast...</p>
+    </div>
+
+    <!-- ── DATE/TIME PICKER ── -->
+    <section class="section" id="dt-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title"><i class="fas fa-clock-rotate-left" style="font-size:1.1rem;"></i> Weather at a Specific Time</h2>
+          <p class="section-subtitle">Pick any date & time in the next 5 days</p>
+        </div>
+        <div class="dt-picker-card">
+          <div class="dt-picker-body">
+            <div class="dt-picker-info">
+              <i class="fas fa-calendar-clock dt-big-icon"></i>
+              <div>
+                <h3>Date &amp; Time Lookup</h3>
+                <p>Select a date and time to see the forecasted weather conditions for your searched city.</p>
+                <p class="dt-note"><i class="fas fa-circle-info"></i> Available for the next 5 days in 3-hour intervals</p>
+              </div>
+            </div>
+            <div class="dt-controls">
+              <div class="dt-input-wrap">
+                <label for="dt-picker"><i class="fas fa-calendar"></i> Date &amp; Time</label>
+                <input type="datetime-local" id="dt-picker" />
+              </div>
+              <button class="dt-lookup-btn" id="dt-lookup-btn">
+                <i class="fas fa-magnifying-glass"></i> Check Weather
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slot Result -->
+        <div id="slot-result" class="hidden"></div>
+      </div>
+    </section>
+
+    <!-- ── 7-DAY FORECAST ── -->
+    <section class="section" id="weekly-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">7-Day Forecast</h2>
+        </div>
+        <div class="forecast-placeholder" id="weekly-placeholder">
+          <p><i class="fas fa-calendar-days"></i> 7-day forecast will appear after searching for a city</p>
+        </div>
+        <div class="weekly-grid hidden" id="weekly-grid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-icon"><i class="fas fa-cloud-sun"></i></span>
+          <span class="logo-text">SKICAST</span>
+        </div>
+        <p class="footer-tagline">Explore weather anywhere in the world</p>
+        <div class="footer-nav">
+          <a href="index.html">Today</a>
+          <a href="forecast.html">Forecast</a>
+          <a href="world.html">World</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 SKICAST. Built with <i class="fas fa-cloud"></i> &amp; <i class="fas fa-heart"></i></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

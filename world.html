@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKICAST - Worldwide Weather</title>
+  <meta name="description" content="Compare current weather across major cities worldwide — Hyderabad, Delhi, London, New York, Tokyo, Dubai, Sydney, Paris — with SKICAST." />
+  <meta name="theme-color" content="#1a6fad" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Zen+Dots&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="world.css" />
+</head>
+<body data-page="world">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-cloud-sun"></i></span>
+        <span class="logo-text">SKICAST</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Today</a></li>
+        <li><a href="forecast.html">Forecast</a></li>
+        <li><a href="world.html" class="active">World</a></li>
+      </ul>
+      <div class="nav-search">
+        <div class="search-wrapper">
+          <span class="search-icon"><i class="fas fa-magnifying-glass"></i></span>
+          <input type="text" id="nav-search-input" placeholder="Search city..." autocomplete="off" />
+          <button class="search-btn" id="nav-search-btn">Go</button>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a href="index.html">Today</a></li>
+        <li><a href="forecast.html">Forecast</a></li>
+        <li><a href="world.html" class="active">World</a></li>
+      </ul>
+      <div class="mobile-search">
+        <input type="text" id="mobile-search-input" placeholder="Search city..." autocomplete="off" />
+        <button id="mobile-search-btn">Go</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <div class="page-header">
+    <div class="container">
+      <div class="ph-top">
+        <div class="ph-breadcrumb">
+          <a href="index.html"><i class="fas fa-house"></i> Home</a>
+          <i class="fas fa-chevron-right"></i>
+          <span>World</span>
+        </div>
+      </div>
+      <h1 class="ph-title"><i class="fas fa-globe"></i> Worldwide Weather</h1>
+      <p class="ph-subtitle">Live conditions across major cities — click any city to see detailed weather</p>
+    </div>
+  </div>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+    <div class="toast" id="toast"></div>
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="loader"></div>
+      <p>Fetching world weather...</p>
+    </div>
+
+    <section class="section" id="world">
+      <div class="container">
+
+        <!-- Region filter pills -->
+        <div class="world-filter">
+          <span class="filter-label"><i class="fas fa-filter"></i> Featured cities</span>
+          <div class="filter-pills">
+            <span class="pill active">All</span>
+            <span class="pill">Asia</span>
+            <span class="pill">Europe</span>
+            <span class="pill">Americas</span>
+            <span class="pill">Middle East</span>
+            <span class="pill">Oceania</span>
+          </div>
+        </div>
+
+        <div class="world-grid" id="world-grid">
+          <div class="world-card skeleton"></div>
+          <div class="world-card skeleton"></div>
+          <div class="world-card skeleton"></div>
+          <div class="world-card skeleton"></div>
+          <div class="world-card skeleton"></div>
+          <div class="world-card skeleton"></div>
+          <div class="world-card skeleton"></div>
+          <div class="world-card skeleton"></div>
+        </div>
+
+        <p class="world-hint"><i class="fas fa-hand-pointer"></i> Click any city card to see its detailed weather on the Today page</p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-icon"><i class="fas fa-cloud-sun"></i></span>
+          <span class="logo-text">SKICAST</span>
+        </div>
+        <p class="footer-tagline">Explore weather anywhere in the world</p>
+        <div class="footer-nav">
+          <a href="index.html">Today</a>
+          <a href="forecast.html">Forecast</a>
+          <a href="world.html">World</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 SKICAST. Built with <i class="fas fa-cloud"></i> &amp; <i class="fas fa-heart"></i></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

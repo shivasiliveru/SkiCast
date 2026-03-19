@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKICAST - Today's Weather</title>
+  <meta name="description" content="Check today's current weather, real-time conditions and hourly forecast for any city worldwide with SKICAST." />
+  <meta name="theme-color" content="#1a6fad" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Zen+Dots&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body data-page="today">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon"><i class="fas fa-cloud-sun"></i></span>
+        <span class="logo-text">SKICAST</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Today</a></li>
+        <li><a href="forecast.html">Forecast</a></li>
+        <li><a href="world.html">World</a></li>
+      </ul>
+      <div class="nav-search">
+        <div class="search-wrapper">
+          <span class="search-icon"><i class="fas fa-magnifying-glass"></i></span>
+          <input type="text" id="nav-search-input" placeholder="Search city..." autocomplete="off" aria-label="Search city" />
+          <button class="search-btn" id="nav-search-btn">Go</button>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <ul>
+        <li><a href="index.html" class="active">Today</a></li>
+        <li><a href="forecast.html">Forecast</a></li>
+        <li><a href="world.html">World</a></li>
+      </ul>
+      <div class="mobile-search">
+        <input type="text" id="mobile-search-input" placeholder="Search city..." autocomplete="off" />
+        <button id="mobile-search-btn">Go</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-globe"></i> Live Weather Data</div>
+      <h1 class="hero-title">SKICAST</h1>
+      <p class="hero-tagline">Explore weather anywhere in the world</p>
+      <div class="hero-search">
+        <div class="hero-search-wrapper">
+          <span class="hero-search-icon"><i class="fas fa-magnifying-glass"></i></span>
+          <input type="text" id="hero-search-input" placeholder="Enter a city name..." autocomplete="off" aria-label="Search for a city" />
+          <button class="hero-search-btn" id="hero-search-btn">Search</button>
+        </div>
+        <button class="location-btn" id="location-btn">
+          <span class="loc-icon"><i class="fas fa-location-dot"></i></span>
+          Use My Location
+        </button>
+      </div>
+    </div>
+    <div class="hero-clouds">
+      <div class="cloud cloud-1"><i class="fas fa-cloud"></i></div>
+      <div class="cloud cloud-2"><i class="fas fa-cloud-sun"></i></div>
+      <div class="cloud cloud-3"><i class="fas fa-cloud"></i></div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+    <div class="toast" id="toast"></div>
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="loader"></div>
+      <p>Fetching weather data...</p>
+    </div>
+
+    <!-- Current Weather -->
+    <section class="section" id="current-weather">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Current Weather</h2>
+          <p class="section-subtitle" id="last-updated">—</p>
+        </div>
+        <div class="current-weather-card" id="current-weather-card">
+          <div class="cw-placeholder" id="cw-placeholder">
+            <div class="placeholder-icon"><i class="fas fa-cloud-sun"></i></div>
+            <p>Search for a city or use your location to see weather data</p>
+          </div>
+          <div class="cw-content hidden" id="cw-content">
+            <div class="cw-left">
+              <div class="cw-location">
+                <h2 id="cw-city">—</h2>
+                <span id="cw-country" class="cw-country-badge">—</span>
+              </div>
+              <div class="cw-date" id="cw-date">—</div>
+              <div class="cw-temp-row">
+                <div class="cw-temp" id="cw-temp">—</div>
+                <div class="cw-icon-wrap"><img id="cw-icon" src="" alt="Weather icon" /></div>
+              </div>
+              <div class="cw-condition" id="cw-condition">—</div>
+            </div>
+            <div class="cw-right">
+              <div class="cw-stats">
+                <div class="cw-stat"><span class="stat-icon"><i class="fas fa-droplet"></i></span><div><div class="stat-label">Humidity</div><div class="stat-val" id="cw-humidity">—</div></div></div>
+                <div class="cw-stat"><span class="stat-icon"><i class="fas fa-wind"></i></span><div><div class="stat-label">Wind Speed</div><div class="stat-val" id="cw-wind">—</div></div></div>
+                <div class="cw-stat"><span class="stat-icon"><i class="fas fa-thermometer-half"></i></span><div><div class="stat-label">Feels Like</div><div class="stat-val" id="cw-feels">—</div></div></div>
+                <div class="cw-stat"><span class="stat-icon"><i class="fas fa-gauge-high"></i></span><div><div class="stat-label">Pressure</div><div class="stat-val" id="cw-pressure">—</div></div></div>
+                <div class="cw-stat"><span class="stat-icon"><i class="fas fa-eye"></i></span><div><div class="stat-label">Visibility</div><div class="stat-val" id="cw-visibility">—</div></div></div>
+                <div class="cw-stat"><span class="stat-icon"><i class="fas fa-sun"></i></span><div><div class="stat-label">Sunrise</div><div class="stat-val" id="cw-sunrise">—</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hourly Forecast -->
+    <section class="section" id="forecast">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Hourly Forecast</h2>
+        </div>
+        <div class="hourly-scroll" id="hourly-scroll">
+          <div class="forecast-placeholder" id="hourly-placeholder">
+            <p><i class="fas fa-clock"></i> Hourly forecast will appear after searching for a city</p>
+          </div>
+          <div class="hourly-strip hidden" id="hourly-strip"></div>
+        </div>
+
+        <!-- CTA to forecast page -->
+        <div class="page-cta hidden" id="forecast-cta">
+          <a href="forecast.html" class="cta-link">
+            <i class="fas fa-calendar-days"></i> View 7-Day Forecast
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-icon"><i class="fas fa-cloud-sun"></i></span>
+          <span class="logo-text">SKICAST</span>
+        </div>
+        <p class="footer-tagline">Explore weather anywhere in the world</p>
+        <div class="footer-nav">
+          <a href="index.html">Today</a>
+          <a href="forecast.html">Forecast</a>
+          <a href="world.html">World</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 SKICAST. Built with <i class="fas fa-cloud"></i> &amp; <i class="fas fa-heart"></i></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Show CTA after weather loads
+    document.addEventListener('skicast:cityloaded', () => {
+      document.getElementById('forecast-cta')?.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
